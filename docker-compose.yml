@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  nextjs-firebase-starter-production:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: nextjs-firebase-starter-production
+    ports:
+      - '3000:3000'
