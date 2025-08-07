@@ -10,6 +10,7 @@ interface State {
   userData: AccountUserModel;
   hadCheckLogin: boolean;
   isLogining: boolean;
+  isNeedRegister: boolean;
   isNeedRefreshStatus: boolean;
 }
 
@@ -21,6 +22,7 @@ const initialState: State = {
   },
   hadCheckLogin: false,
   isLogining: false,
+  isNeedRegister: false,
   isNeedRefreshStatus: false,
 };
 
@@ -31,12 +33,18 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    authSetIsLogining: (state, action: PayloadAction<boolean>) => {
-      state.isLogining = action.payload;
-    },
     authSetHadCheckLogin: (state, action: PayloadAction<boolean>) => {
       state.hadCheckLogin = action.payload;
       state.isNeedRefreshStatus = false;
+    },
+    authSetIsLogining: (state, action: PayloadAction<boolean>) => {
+      state.isLogining = action.payload;
+    },
+    authSetNeedRegister: (state, action: PayloadAction<boolean>) => {
+      state.isNeedRegister = action.payload;
+    },
+    authSetNeedRefreshStatus: (state, action: PayloadAction<boolean>) => {
+      state.isNeedRefreshStatus = action.payload;
     },
     authClear: (state) => {
       state.userData = {
@@ -52,8 +60,7 @@ const authSlice = createSlice({
         uid: string | null;
         token: string | null;
         claims?: ParsedToken;
-        isAnonymously?: boolean;
-      }>,
+      }>
     ) => {
       if (!action.payload.uid) {
         state.userData = {
@@ -75,17 +82,16 @@ const authSlice = createSlice({
           uid: action.payload.uid,
           token: action.payload.token,
           exp: timer,
-          
+
           providerId: action.payload.claims?.firebase?.sign_in_provider ?? '',
-          isAnonymously: action.payload.isAnonymously,
         };
       }
       state.isNeedRefreshStatus = false;
     },
-    // authReceiveUserProfile: (state, action: PayloadAction<{ data: UserModel }>) => {
-    //   state.userData = { ...state.userData, data: action.payload.data };
-    // },
-    authChangeToken: (state, action: PayloadAction<{ token: string; claims?: ParsedToken }>) => {
+    authChangeToken: (
+      state,
+      action: PayloadAction<{ token: string; claims?: ParsedToken }>
+    ) => {
       let timer: number;
       try {
         timer = new MyDateTime(
@@ -101,22 +107,28 @@ const authSlice = createSlice({
         exp: timer,
 
         providerId: action.payload.claims?.firebase?.sign_in_provider ?? '',
+        scope:
+          action.payload.claims?.scope !== null &&
+          action.payload.claims?.scope !== undefined
+            ? String(action.payload.claims.scope)
+            : null,
       };
       state.isNeedRefreshStatus = false;
     },
-    authSetNeedRefreshStatus: (state, action: PayloadAction<boolean>) => {
-      state.isNeedRefreshStatus = action.payload;
-    },
+    // authReceiveUserProfile: (state, action: PayloadAction<{ data: UserModel }>) => {
+    //   state.userData = { ...state.userData, data: action.payload.data };
+    // },
   },
 });
 
 export default authSlice.reducer;
 export const {
-  authSetIsLogining,
   authSetHadCheckLogin,
+  authSetIsLogining,
+  authSetNeedRegister,
+  authSetNeedRefreshStatus,
   authClear,
   authSetUser,
-  // authReceiveUserProfile,
   authChangeToken,
-  authSetNeedRefreshStatus,
+  // authReceiveUserProfile,
 } = authSlice.actions;

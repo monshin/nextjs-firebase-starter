@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 
-export default function FrontendLayout({ children }: React.PropsWithChildren) {
+export default function ForestageLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       <Navbar />

@@ -11,7 +11,7 @@ interface IProps {
 export default function StoreProvider({
   children,
   token,
-}: Readonly<React.PropsWithChildren<IProps>>) {
+}: React.PropsWithChildren<IProps>) {
   const storeRef = useRef<AppStore | null>(null);
   if (!storeRef.current) {
     // Create the store instance the first time this renders

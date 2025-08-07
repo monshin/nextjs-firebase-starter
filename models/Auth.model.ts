@@ -7,7 +7,7 @@ export interface AccountUserModel {
   exp: number;
 
   providerId?: string;
-  isAnonymously?: boolean;
+  scope?: string | null;
 
   // data?: UserModel | null;
 }

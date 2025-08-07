@@ -9,6 +9,9 @@ const configFnc = (phase: string) => {
     IS_PROD: isProd.toString(),
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     VERSION: require('./package.json').version,
+
+    API_HOST_URL: 'https://api.example.com',
+    // API_HOST_URL: isProd ? 'https://api.example.com' : 'http://localhost:8082',
   };
 
   const nextConfig: NextConfig = {

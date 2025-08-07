@@ -4,24 +4,15 @@ import { useEffect, useRef } from 'react';
 import { onAuthStateChanged, type Unsubscribe } from 'firebase/auth';
 
 import { useAppDispatch } from '@/store/hooks';
-import {
-  authClear,
-  authSetHadCheckLogin,
-  authSetUser,
-} from '@/store/features/auth/slice';
-// import { useLoadingStore } from "@/store/loadingStore";
+import { authSetHadCheckLogin } from '@/store/features/auth/slice';
 
 import FirebaseAuth from '@/lib/firebase/auth';
+import { authCheckUser } from '@/store/features/auth/actions';
 
 export default function LoginPlugin() {
   const unregisterAuthObserver = useRef<Unsubscribe | null>(null);
 
   const dispatch = useAppDispatch();
-
-  // const showLoadingDialog = useLoadingStore((state) => state.showLoadingDialog);
-  // const closeLoadingDialog = useLoadingStore(
-  //   (state) => state.closeLoadingDialog
-  // );
 
   useEffect(
     () => {
@@ -29,35 +20,9 @@ export default function LoginPlugin() {
       unregisterAuthObserver.current = onAuthStateChanged(
         FirebaseAuth,
         async (user) => {
-          // showLoadingDialog();
           if (user !== null) {
-            const { currentUser } = FirebaseAuth;
-            if (currentUser !== null && currentUser !== undefined) {
-              try {
-                const result = await currentUser.getIdTokenResult();
-                dispatch(
-                  authSetUser({
-                    token: result.token,
-                    uid: user.uid,
-                    claims: result.claims,
-                  })
-                );
-              } catch {
-                dispatch(authClear());
-                try {
-                  FirebaseAuth.signOut();
-                } catch {}
-              } finally {
-                // closeLoadingDialog();
-                dispatch(authSetHadCheckLogin(true));
-              }
-            } else {
-              dispatch(authClear());
-              // closeLoadingDialog();
-              dispatch(authSetHadCheckLogin(true));
-            }
+            dispatch(authCheckUser());
           } else {
-            // closeLoadingDialog();
             dispatch(authSetHadCheckLogin(true));
           }
         }
