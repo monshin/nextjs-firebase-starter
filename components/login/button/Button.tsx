@@ -10,7 +10,7 @@ export default function LoginButton({
   return (
     <button
       type="button"
-      className={cn('flex justify-center items-center px-1.5 py-2', className)}
+      className={cn('flex justify-center items-center p-1', className)}
       {...props}
     >
       {children}

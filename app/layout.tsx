@@ -1,7 +1,8 @@
 import { cookies } from 'next/headers';
 
-import StoreProvider from './StoreProvider';
-import LoginPlugin from './LoginPlugin';
+import StoreProvider from '../components/StoreProvider';
+import LoginPlugin from '../components/LoginPlugin';
+import ToastProvider from '@/components/ToastProvider';
 
 import './globals.css';
 
@@ -20,6 +21,7 @@ export default async function RootLayout({
         <StoreProvider token={token}>
           <LoginPlugin />
           {children}
+          <ToastProvider />
         </StoreProvider>
       </body>
     </html>

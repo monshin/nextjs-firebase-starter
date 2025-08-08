@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import type { ToastVariantType } from '@/enums/toast.enum';
+import { TypeOptions as ToastVariantType } from 'react-toastify';
 
 /*
  * 顯示 Toast 通知訊息

@@ -17,7 +17,7 @@ export default function ButtonFacebook({ className }: IProps) {
 
   const onClick = useCallback(() => {
     dispatch(authLoginWithFacebook());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Button

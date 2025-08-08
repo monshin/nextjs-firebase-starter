@@ -3,7 +3,7 @@
 @theme {
   --default-font-family: 'Roboto', 'Arial', 'Noto Sans TC', '黑體-繁',
     '微軟正黑體', sans-serif;
-  --spacing: 4px;
+  --spacing: 8px;
 }
 
 :root {
