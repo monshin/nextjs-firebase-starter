@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { CloseButtonProps, ToastContainer } from "react-toastify";
-import CloseIcon from "@/images/icon/close/icon_close_dynamic.svg";
-import { cn } from "@/lib/style";
-import "react-toastify/dist/ReactToastify.css";
+import { CloseButtonProps, ToastContainer } from 'react-toastify';
+import CloseIcon from '@/images/icon/close/icon_close_dynamic.svg';
+import { cn } from '@/lib/utils';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CloseButton({ closeToast }: CloseButtonProps) {
   return (
@@ -20,21 +20,21 @@ function CloseButton({ closeToast }: CloseButtonProps) {
 
 export default function ToastProvider() {
   const contextClass = {
-    success: "bg-blue-600",
-    error: "bg-red-600",
-    info: "bg-gray-600",
-    warning: "bg-orange-400",
-    default: "bg-indigo-600",
-    dark: "bg-white-600 font-gray-300",
+    success: 'bg-blue-600',
+    error: 'bg-red-600',
+    info: 'bg-gray-600',
+    warning: 'bg-orange-400',
+    default: 'bg-indigo-600',
+    dark: 'bg-white-600 font-gray-300',
   };
 
   return (
     <ToastContainer
-      className="text-sm font-white font-med block p-1.5"
+      className="text-sm font-white font-med block p-3"
       toastClassName={(context) =>
         cn(
-          contextClass[context?.type || "default"],
-          "relative flex p-1 my-0.5 min-h-1.25 rounded-md items-center overflow-hidden cursor-pointer"
+          contextClass[context?.type || 'default'],
+          'relative flex p-2 my-1 min-h-4 rounded-md items-center overflow-hidden cursor-pointer'
         )
       }
       closeButton={CloseButton}

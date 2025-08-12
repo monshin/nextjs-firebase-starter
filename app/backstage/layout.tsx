@@ -1,10 +1,9 @@
-import Navbar from '@/components/Navbar';
+import AuthWrapper from './AuthWrapper';
 
 export default function BackstageLayout({ children }: React.PropsWithChildren) {
   return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-    </>
+    <main>
+      <AuthWrapper>{children}</AuthWrapper>
+    </main>
   );
 }

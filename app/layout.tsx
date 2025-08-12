@@ -13,8 +13,8 @@ export default async function RootLayout({
 }: Readonly<React.PropsWithChildren>) {
   const cookieStore = await cookies();
   const token = cookieStore.get('token')?.value;
-  console.log('token', token);
-  
+  // console.log('token', token);
+
   return (
     <html lang="zh-Hant-TW" suppressHydrationWarning>
       <body className="text-(length:--fontSize-default) antialiased">

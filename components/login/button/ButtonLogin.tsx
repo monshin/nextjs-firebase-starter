@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 
 import Button from './Button';
 
-import { cn } from '@/lib/style';
+import { cn } from '@/lib/utils';
 
 interface IProps {
   className?: string;
@@ -22,11 +22,7 @@ export default function ButtonGoogle({ className }: IProps) {
   }, [pathname, router]);
 
   return (
-    <Button
-      type="button"
-      className={cn('text-black border', className)}
-      onClick={onClick}
-    >
+    <Button type="button" className={cn('border', className)} onClick={onClick}>
       登入
     </Button>
   );

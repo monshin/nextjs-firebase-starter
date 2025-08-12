@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 
 import Button from './Button';
 
-import { cn } from '@/lib/style';
+import { cn } from '@/lib/utils';
 import { useAppDispatch } from '@/store/hooks';
 import { authLoginWithGoogle } from '@/store/features/auth/actions';
 
@@ -20,11 +20,7 @@ export default function ButtonGoogle({ className }: IProps) {
   }, [dispatch]);
 
   return (
-    <Button
-      type="button"
-      className={cn('text-black border', className)}
-      onClick={onClick}
-    >
+    <Button type="button" className={cn('border', className)} onClick={onClick}>
       {/* <span className="icon icon-login-google" /> */}
       使用 Google 登入/註冊
     </Button>

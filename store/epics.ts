@@ -17,5 +17,6 @@ export default combineEpics(
   authEpics.authLoginWithEmailEpic,
   authEpics.authLoginWithGoogleEpic,
   authEpics.authLoginWithFacebookEpic,
-  authEpics.authCheckUserEpic
+  authEpics.authCheckUserEpic,
+  authEpics.authLogoutEpic,
 );

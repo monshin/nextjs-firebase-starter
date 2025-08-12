@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/lib/style';
+import { cn } from '@/lib/utils';
 
 export default function LoginButton({
   children,
@@ -10,7 +10,10 @@ export default function LoginButton({
   return (
     <button
       type="button"
-      className={cn('flex justify-center items-center p-1', className)}
+      className={cn(
+        'flex flex-nowrap justify-center items-center p-2',
+        className
+      )}
       {...props}
     >
       {children}

@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 
 import Button from './Button';
 
-import { cn } from '@/lib/style';
+import { cn } from '@/lib/utils';
 import { useAppDispatch } from '@/store/hooks';
 import { authLogout } from '@/store/features/auth/actions';
 
@@ -20,11 +20,7 @@ export default function ButtonGoogle({ className }: IProps) {
   }, [dispatch]);
 
   return (
-    <Button
-      type="button"
-      className={cn('text-black border', className)}
-      onClick={onClick}
-    >
+    <Button type="button" className={cn('border', className)} onClick={onClick}>
       登出
     </Button>
   );
