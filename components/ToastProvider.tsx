@@ -1,7 +1,8 @@
 'use client';
 
 import { CloseButtonProps, ToastContainer } from 'react-toastify';
-import CloseIcon from '@/images/icon/close/icon_close_dynamic.svg';
+import { X } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,7 +14,7 @@ function CloseButton({ closeToast }: CloseButtonProps) {
       onClick={closeToast}
       aria-label="Close"
     >
-      <CloseIcon className="w-3 h-3" />
+      <X size={24} />
     </button>
   );
 }
